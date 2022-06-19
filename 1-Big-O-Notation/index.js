@@ -186,3 +186,220 @@ console.log(double(arr1));
     - sort : O(N * log N)
     - forEach/map/filter/reduce/etc... : O(n)
  */
+
+
+
+/*
+    문제 해결 방법
+
+    1. 알고리즘
+    - 특정 작업을 달성하기 위한 과정이나 일련의 단계를 의미
+    - 특정 문제를 해결하기 위한 기초적인 단계
+
+    - 문제해결을 위한 계획 수립 및 세분화
+    - 일반적인 문제 해결 패턴 확인
+
+
+    2. 문제 해결 과정
+    - 문제 이해
+    - 구체적인 예시 확인
+    - 문제를 세분화
+    - 문제를 해결하고 이를 단순화
+    - 문제를 복습하고 재구성
+*/
+
+
+/*
+    문제 이해
+    - 자신만의 방식으로 바꿔서 질문이 무엇인지를 이해하는 단계
+    - 문제가 어떤 입력값을 담고 있는가?
+    - 어떤 출력값이 나와야 하는가?
+    - 입력값이 출력값을 결정할 수 있는가?
+    - 문제의 일부인 중요한 데이터의 라벨을 어떻게 지정해야 하는가?
+ */
+
+
+/*
+    구체적인 예시
+    - 간단한 예시로 시작
+    - 점점 복잡한 예시로 진행
+    - 유효하지 않은 입력값이 주어진 상황을 고려
+
+    charCount("aaaaa");   // { a: 5 };
+    charCount("hello");  // { h: 1, e: 1, l: 2, o: 1 };
+ */
+
+
+
+
+/*
+    문제 세분화
+*/
+
+function charCount1(str) {
+    // do something
+    // return an object with keys that are lowercase alphanumeric characters in the string
+    // values should be the counts for those characters
+}
+
+function charCount2(str) {
+    // make object to return at end
+    // loop over string, for each character...
+        // if the char is a number/letter AND is a key in object, add one to count
+        // if the char is a number/letter AND not in object, add it to object and set value to 1
+        // if character is something else (space, period, etc.) don't do anything
+
+    // return object at end
+}
+
+
+
+
+/*
+    문제를 해결하고 단순화
+    - 세분화한 문제별로 해결책을 제시
+*/
+function charCount3(str) {
+    // make object to return at end
+    let result = {};
+
+    // loop over string, for each character...
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i].toLowerCase();
+        // if the char is a number/letter AND is a key in object, add one to count
+        if (result[char] > 0) {
+            result[char]++;
+
+            // if the char is a number/letter AND not in object, add it to object and set value to 1
+        } else {
+            result[char] = 1;
+        }
+    }
+
+
+    // if character is something else (space, period, etc.) don't do anything
+    // return object at end
+
+    return result;
+}
+
+// console.log(charCount3('hello111!'));
+
+
+
+
+/*
+    문제를 복습하고 재구성
+*/
+function charCount4(str) {
+    let result = {};
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i].toLowerCase();
+        if (/[a-z0-9]/.test(char)) {
+            if (result[char] > 0) {
+                result[char]++;
+            } else {
+                result[char] = 1;
+            }
+        }
+    }
+
+    return result;
+}
+// console.log(charCount4('Hello'));
+
+function charCount5(str) {
+    let result = {};
+
+    for (let char of str) {
+        char = char.toLowerCase();
+
+        if (/[a-z0-9]/.test(char)) {
+            if (result[char] > 0) {
+                result[char]++;
+            } else {
+                result[char] = 1;
+            }
+        }
+    }
+
+    return result;
+}
+
+// console.log(charCount5('Hello'));
+
+
+
+function charCount6(str) {
+    let result = {};
+
+    for (let char of str) {
+        char = char.toLowerCase();
+        if (/[a-z0-9]/.test(char)) {
+            result[char] = ++ result[char] || 1
+        }
+    }
+
+    return result;
+}
+
+// console.log(charCount6('Hello'));
+
+
+
+
+
+function charCount7(str) {
+    let result = {};
+
+    for (let char of str) {
+        if (isAlphaNumeric(char)) {
+            char = char.toLowerCase();
+            result[char] = ++ result[char] || 1
+        }
+    }
+
+    return result;
+}
+
+function isAlphaNumeric(char) {
+    const code = char.charCodeAt(0);
+
+    if (!(code > 47 && code < 58) &&   // 숫자 (0-9)
+        !(code > 64 && code < 91) &&   // 대문자
+        !(code > 96 && code < 123)) {  // 소문자
+        return false;
+    }
+
+    return true;
+}
+
+console.log(charCount7('Hello'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
