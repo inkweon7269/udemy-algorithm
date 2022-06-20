@@ -119,7 +119,7 @@ function sum(arr) {
 
     return total;
 }
-console.log(sum(arr1));
+// console.log(sum(arr1));
 
 
 
@@ -134,7 +134,7 @@ function double(arr) {
     return newArr;
 }
 
-console.log(double(arr1));
+// console.log(double(arr1));
 
 
 
@@ -374,7 +374,7 @@ function isAlphaNumeric(char) {
     return true;
 }
 
-console.log(charCount7('Hello'));
+// console.log(charCount7('Hello'));
 
 
 
@@ -382,14 +382,153 @@ console.log(charCount7('Hello'));
 
 
 
+/*
+    일반적인 문제 해결 패턴
+*/
+/*
+    Frequency Counter : 빈도 카운터 패턴
+
+    - 빈도 카운터는 보통 객체를 사용한다.
+    - 객체를 사용하여 프로파일을 구성하는 것은 배열이나 문자열의 내용을 분석하는 방법으로 보통 배열이나 문자열과 같은 선형 구조를 구성하는 것이다.
+    - 그러면 해당 분석을 문자열이나 배열에서 생성된 다른 객체의 형태와 신속하게 비교할 수 있다.
+*/
+
+
+/*
+    예시 문제 1
+    - 첫 번째 배열 안에 있는 값의 제곱이 두 번째 배열 안에 담겨있는가?
+    - 이 때 각 배열의 길이는 동일해야한다.
+
+    - same([1, 2, 3], [4, 1, 9]) true
+    - same([1, 2, 3], [1, 9]) false
+    - same([1, 2, 1], [4, 4, 1]) false
+ */
+// O(n제곱)
+function same1(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+
+    for (let i = 0; i < arr1.length; i++) {
+        // indexOf() 기능이 중첩된 루프이다.
+        const correctIndex = arr2.indexOf(arr1[i] ** 2);
+        if (correctIndex === -1) {
+            return false;
+        }
+        arr2.splice(correctIndex, 1);
+    }
+
+    return true;
+}
+
+// console.log(same1([1, 2, 3], [1, 4, 9]));
+
+// O(n)
+function same2(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+
+    let frequencyCounter1 = {};
+    let frequencyCounter2 = {};
+
+    for (let val of arr1) {
+        frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+    }
+
+    for (let val of arr2) {
+        frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1
+    }
+
+    console.log(frequencyCounter1);
+    console.log(frequencyCounter2);
+
+    for (let key in frequencyCounter1) {
+        if(!(key ** 2 in frequencyCounter2)) {
+            return false;
+        }
+        if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+// same2([1, 2, 3], [4, 10, 9]);
 
 
 
 
+/*
+* 예시 문제 2
+* 아나그램
+*
+* - validAnagram('', '') // true
+* - validAnagram('aaz', 'zza') // false
+* - validAnagram('anagram', 'nagaram') // false
+* */
 
+function validAnagram1(str1, str2) {
+    if (str1.length !== str2.length) {
+        return false;
+    }
 
+    let frequencyCounter1 = {};
+    let frequencyCounter2 = {};
 
+    for (let val of str1) {
+        if (isAlphaNumeric(val)) {
+            const result = val.toLowerCase();
+            frequencyCounter1[result] = (frequencyCounter1[result] || 0) + 1
+        }
+    }
 
+    for (let val of str2) {
+        if (isAlphaNumeric(val)) {
+            const result = val.toLowerCase();
+            frequencyCounter2[result] = (frequencyCounter2[result] || 0) + 1
+        }
+    }
+
+    for (let key in frequencyCounter1) {
+        if (frequencyCounter1[key] !== frequencyCounter2[key]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+// console.log(validAnagram1('abc', 'edb'));
+
+function validAnagram2(str1, str2) {
+    if (str1.length !== str2.length) {
+        return false;
+    }
+
+    const lookup = {};
+    for (let i = 0; i < str1.length; i++) {
+        let letter = str1[i];
+        lookup[letter] ? lookup[letter] += 1 : lookup[letter] = 1;
+    }
+
+    for (let i = 0; i < str2.length; i++) {
+        let letter = str2[i];
+        if(!lookup[letter]) {
+            return false;
+        } else {
+            lookup[letter] -= 1;
+        }
+    }
+
+    console.log(lookup);
+
+    return true;
+}
+
+// console.log(validAnagram2('abc', 'bca'));
 
 
 
