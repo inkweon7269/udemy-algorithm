@@ -15,7 +15,6 @@
 */
 
 
-
 /*
     시간 복잡도
     - 시간 복잡도란 연산 횟수를 기준으로 측정한다.
@@ -33,6 +32,7 @@ function addUpTo1(n) {
     }
     return total;
 }
+
 // 방법 2 : *, +, / 연산 과정이 3번만 들어간다.
 // 이를 Big O로 표기하면 O(1)
 // 이는 연산 횟수가 일정하다는 의미이다.
@@ -43,8 +43,6 @@ function addUpTo2(n) {
 let num1 = 3
 // console.log(addUpTo1(num1));
 // console.log(addUpTo2(num1));
-
-
 
 
 // O(n)
@@ -65,7 +63,7 @@ function countUpAndDown(n) {
 
 // 중첩일 경우에는 표기 방법 O(n * n) or O(n제곱);
 function printAllPairs(n) {
-    for (let i =0; i < n; i++) {
+    for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             console.log(i, j);
         }
@@ -75,11 +73,10 @@ function printAllPairs(n) {
 // printAllPairs(10)
 
 
-
 // Big O : O(n)
 // 5보다 작으면 1, 2, 3, 4, 5를 출력
 function logAtLeast5(n) {
-    for (let i = 1; i <= Math.max(5, n); i ++) {
+    for (let i = 1; i <= Math.max(5, n); i++) {
         console.log(i);
     }
 }
@@ -88,15 +85,13 @@ function logAtLeast5(n) {
 // 5보다 크면 1, 2, 3, 4, 5 출력
 // num이 커지더라도 반복 횟수는 제한적이기 때문에 영향이 없다.
 function logAtMost5(n) {
-    for (let i = 1; i <= Math.min(5, n); i ++) {
+    for (let i = 1; i <= Math.min(5, n); i++) {
         console.log(i);
     }
 }
 
 // logAtLeast5(5);
 // logAtMost5(10);
-
-
 
 
 /*
@@ -109,7 +104,7 @@ function logAtMost5(n) {
 
 // 예시 1 : O(1)
 // 입력의 크기에 상관없이 공간은 항상 일정하다. (total = 0, i = 0)
-const arr1 = [1, 2, 3, 4 ,5];
+const arr1 = [1, 2, 3, 4, 5];
 
 function sum(arr) {
     let total = 0;
@@ -119,8 +114,8 @@ function sum(arr) {
 
     return total;
 }
-// console.log(sum(arr1));
 
+// console.log(sum(arr1));
 
 
 // 예시 2 : O(n)
@@ -137,9 +132,6 @@ function double(arr) {
 // console.log(double(arr1));
 
 
-
-
-
 /*
 
     로그 (Logarithms)
@@ -148,7 +140,6 @@ function double(arr) {
     - 로그 시간 복잡도는 시간 복잡도가 증가하는 속도가 느리므로 매우 좋은 사례이다.
     - 참고 자료 : https://makemethink.tistory.com/110
 */
-
 
 
 /*
@@ -164,7 +155,6 @@ function double(arr) {
     - entries : O(n)
     - hasOwnProperty : O(1)
 */
-
 
 
 /*
@@ -186,7 +176,6 @@ function double(arr) {
     - sort : O(N * log N)
     - forEach/map/filter/reduce/etc... : O(n)
  */
-
 
 
 /*
@@ -230,8 +219,6 @@ function double(arr) {
  */
 
 
-
-
 /*
     문제 세분화
 */
@@ -245,14 +232,12 @@ function charCount1(str) {
 function charCount2(str) {
     // make object to return at end
     // loop over string, for each character...
-        // if the char is a number/letter AND is a key in object, add one to count
-        // if the char is a number/letter AND not in object, add it to object and set value to 1
-        // if character is something else (space, period, etc.) don't do anything
+    // if the char is a number/letter AND is a key in object, add one to count
+    // if the char is a number/letter AND not in object, add it to object and set value to 1
+    // if character is something else (space, period, etc.) don't do anything
 
     // return object at end
 }
-
-
 
 
 /*
@@ -286,8 +271,6 @@ function charCount3(str) {
 // console.log(charCount3('hello111!'));
 
 
-
-
 /*
     문제를 복습하고 재구성
 */
@@ -306,6 +289,7 @@ function charCount4(str) {
 
     return result;
 }
+
 // console.log(charCount4('Hello'));
 
 function charCount5(str) {
@@ -329,14 +313,13 @@ function charCount5(str) {
 // console.log(charCount5('Hello'));
 
 
-
 function charCount6(str) {
     let result = {};
 
     for (let char of str) {
         char = char.toLowerCase();
         if (/[a-z0-9]/.test(char)) {
-            result[char] = ++ result[char] || 1
+            result[char] = ++result[char] || 1
         }
     }
 
@@ -346,16 +329,13 @@ function charCount6(str) {
 // console.log(charCount6('Hello'));
 
 
-
-
-
 function charCount7(str) {
     let result = {};
 
     for (let char of str) {
         if (isAlphaNumeric(char)) {
             char = char.toLowerCase();
-            result[char] = ++ result[char] || 1
+            result[char] = ++result[char] || 1
         }
     }
 
@@ -375,11 +355,6 @@ function isAlphaNumeric(char) {
 }
 
 // console.log(charCount7('Hello'));
-
-
-
-
-
 
 
 /*
@@ -403,6 +378,7 @@ function isAlphaNumeric(char) {
     - same([1, 2, 3], [1, 9]) false
     - same([1, 2, 1], [4, 4, 1]) false
  */
+
 // O(n제곱)
 function same1(arr1, arr2) {
     if (arr1.length !== arr2.length) {
@@ -444,7 +420,7 @@ function same2(arr1, arr2) {
     console.log(frequencyCounter2);
 
     for (let key in frequencyCounter1) {
-        if(!(key ** 2 in frequencyCounter2)) {
+        if (!(key ** 2 in frequencyCounter2)) {
             return false;
         }
         if (frequencyCounter2[key ** 2] !== frequencyCounter1[key]) {
@@ -457,8 +433,6 @@ function same2(arr1, arr2) {
 
 
 // same2([1, 2, 3], [4, 10, 9]);
-
-
 
 
 /*
@@ -516,7 +490,7 @@ function validAnagram2(str1, str2) {
 
     for (let i = 0; i < str2.length; i++) {
         let letter = str2[i];
-        if(!lookup[letter]) {
+        if (!lookup[letter]) {
             return false;
         } else {
             lookup[letter] -= 1;
@@ -529,6 +503,218 @@ function validAnagram2(str1, str2) {
 }
 
 // console.log(validAnagram2('abc', 'bca'));
+
+
+/*
+    다중 포인터
+    - 인덱스나 위치에 해당하는 포인터나 값을 만든 다음 특정 조건에 따라 중간 지점에서부터 시작 지점이나 끝 지점이나 양쪽 지점을 향해 이동시키는 것입니다.
+ */
+
+/*
+    예시 문제 1
+    - 정렬된 배열을 취하는 함수를 작성
+    - 정렬된 배열이어야 하며 오름 차순이어야 한다.
+    - 한 숫자를 가져와 다른 숫자와 더하면 0이 되는 쌍을 찾는다.
+    - 최초 값만 반환한다.
+
+    sumZero([-3, -2, -1, 0, 1, 2, 3])  // [-3, 3]
+    sumZero([-2, 0, 1, 3])  // undefined
+    sumZero([1, 2, 3])  // undefined
+*/
+
+// O(n제곱)
+function sumZero1(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] === 0) {
+                return [arr[i], arr[j]];
+            }
+        }
+    }
+}
+
+// console.log(sumZero1([-3, -2, -1, 0, 1, 2, 3, 4]));
+
+
+function sumZero2(arr) {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left < right) {
+        let sum = arr[left] + arr[right];
+
+        if (sum === 0) {
+            return [arr[left], arr[right]];
+        } else if (sum > 0) {
+            right--;
+        } else {
+            left++;
+        }
+    }
+}
+
+// console.log(sumZero2([-3, -2, 0, 1, 4]));
+
+
+/*
+    예시 문제 2
+
+    - 다중 포인터나 투 포인터 패턴을 사용
+    - 정렬된 배열은 전달하면 고유한 값의 개수를 반환하는 것
+
+    countUniqueValues([1, 1, 1, 2])  // 2
+    countUniqueValues([])  // 0
+    countUniqueValues([-2, -1, -1, 0, 1])  // 4
+ */
+
+function countUniqueValues1(arr) {
+    if (!arr.length) {
+        return 0;
+    }
+
+    const result = new Set(arr);
+    return result.size;
+}
+
+// console.log(countUniqueValues1([-1, 1, 1, 1, 2]));
+
+
+function countUniqueValues2(arr) {
+    let i = 0;
+
+    for (let j = 1; j < arr.length; j++) {
+        if (arr[i] !== arr[j]) {
+            i++;
+            arr[i] = arr[j]
+        }
+
+        console.log(i, j);
+    }
+
+    return i + 1;
+}
+
+// console.log(countUniqueValues2([1, 1, 1, 3]));
+
+
+/*
+    기준점 간 이동 배열 패턴 (슬라이딩 윈도우)
+    - 배열이나 문자열과 같은 일련의 데이터를 입력하거나 특정 방식으로 연속적인 해당 데이터의 하위 집합을 찾는 경우에 유용
+    - 중복이 없는 가장 긴 문자
+    "hellothere" -> lother
+
+
+    - 서로 마주한 두 숫자의 가장 큰 합계를 찾는 것
+    maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2)  // 10
+
+    // 서로 마주한 4 숫자의 가장 큰 합계
+    maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4)  // 17
+    maxSubarraySum([4, 2, 1, 6], 1)     // 6
+    maxSubarraySum([4, 2, 1, 6, 2], 4)  // 13
+ */
+
+
+function maxSubarraySum1(arr, num) {
+    if (num > arr.length) {
+        return null;
+    }
+
+    let max = -Infinity;
+
+    for (let i = 0; i < arr.length - num + 1; i++) {
+        let temp = 0;
+
+        for (let j = 0; j < num; j++) {
+            temp += arr[i + j];
+        }
+        if (temp > max) {
+            max = temp;
+        }
+    }
+
+    return max;
+}
+
+// console.log(maxSubarraySum1([1, 2, 5, 2, 8, 1, 5], 4))
+
+
+function maxSubarraySum2(arr, num) {
+    let maxSum = 0;
+    let tempSum = 0;
+
+    if (arr.length < num) {
+        return null;
+    }
+
+    for (let i = 0; i < num; i++) {
+        maxSum += arr[i];
+        console.log(maxSum);
+    }
+
+    for (let i = num; i < arr.length; i++) {
+        tempSum = tempSum - arr[i - num] + arr[i];
+        maxSum = Math.max(maxSum, tempSum);
+    }
+
+    return maxSum;
+}
+
+// console.log(maxSubarraySum2([1, 2, 5, 2, 8, 1, 5], 4))
+
+
+/*
+    분할과 정복 패턴 (Divide and Conquer)
+
+    - 정렬된 배열을 취한다는 가정에서 두 번째 인수로 전달한 값의 좌표를 표기
+    - 값이 없으면 -1 반환
+
+    - search([1, 2, 3, 4, 5, 6], 4)  // 3
+    - search([1, 2, 3, 4, 5, 6], 6)  // 5,
+    - search([1, 2, 3, 4, 5, 6], 11) // -1
+ */
+
+function search1(arr, val) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === val) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// console.log(search1([1, 2, 3, 4, 5, 6], 4));
+// console.log(search1([1, 2, 3, 4, 5, 6], 11));
+
+
+function search2(arr, val) {
+    let min = 0; // 3, 5
+    let max = arr.length - 1;  // 5
+
+
+    while (min <= max) {
+        let middle = Math.floor((min + max) / 2);  // 0 + 5 / 2 -> 3 + 5 / 2, / 5 + 5 / 2
+        let currentElement = arr[middle];  // 2, 4, 5
+
+        if (currentElement < val) {
+            min = middle + 1;
+        } else if (currentElement > val) {
+            max = middle - 1;
+        } else {
+            return middle;
+        }
+    }
+
+    return -1;
+}
+
+
+console.log(search2([1, 2, 3, 4, 5, 6], 4));
+console.log(search2([1, 2, 3, 4, 5, 6], 11));
+
+
+
+
 
 
 
